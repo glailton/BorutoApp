@@ -3,8 +3,10 @@ package io.github.glailton.borutoapp.domain.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import io.github.glailton.borutoapp.util.Constants.HERO_DATABASE_TABLE
+import kotlinx.serialization.Serializable
 
 @Entity(tableName = HERO_DATABASE_TABLE)
+@Serializable
 data class Hero(
     @PrimaryKey(autoGenerate = false)
     val id: Int,

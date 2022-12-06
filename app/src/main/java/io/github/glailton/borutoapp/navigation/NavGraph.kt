@@ -6,13 +6,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import io.github.glailton.borutoapp.presentation.screens.home.HomeScreen
 import io.github.glailton.borutoapp.presentation.screens.splash.SplashScreen
 import io.github.glailton.borutoapp.presentation.screens.welcome.WelcomeScreen
 import io.github.glailton.borutoapp.util.Constants.DETAILS_ARGUMENT_KEY
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.Welcome.route){
+    NavHost(navController = navController, startDestination = Screen.Splash.route){
         composable(route = Screen.Splash.route) {
             SplashScreen(navController)
         }
@@ -20,7 +21,7 @@ fun SetupNavGraph(navController: NavHostController) {
             WelcomeScreen(navController)
         }
         composable(route = Screen.Home.route) {
-
+            HomeScreen()
         }
         composable(
             route = Screen.Details.route,

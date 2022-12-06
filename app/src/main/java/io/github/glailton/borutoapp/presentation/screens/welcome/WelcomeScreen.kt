@@ -17,16 +17,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.*
 import io.github.glailton.borutoapp.R
 import io.github.glailton.borutoapp.domain.model.OnBoardingPage
+import io.github.glailton.borutoapp.navigation.Screen
 import io.github.glailton.borutoapp.ui.theme.*
+import io.github.glailton.borutoapp.util.Constants.LAST_ON_BOARDING_PAGE
 import io.github.glailton.borutoapp.util.Constants.ON_BOARDING_PAGE_COUNT
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun WelcomeScreen(navController: NavHostController) {
+fun WelcomeScreen(
+    navController: NavHostController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -66,7 +72,9 @@ fun WelcomeScreen(navController: NavHostController) {
                 .weight(1f),
             pagerState = pagerState
         ) {
-
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+            welcomeViewModel.saveOnBoardingState(true)
         }
     }
 }
@@ -118,12 +126,14 @@ fun FinishButton(modifier: Modifier, pagerState: PagerState, onClick: () -> Unit
     ) {
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 2
+            visible = pagerState.currentPage == LAST_ON_BOARDING_PAGE
         ) {
-            Button(onClick = onClick, colors = ButtonDefaults.buttonColors(
-                backgroundColor = MaterialTheme.colors.buttonBackgroundColor,
-                contentColor = Color.White
-            )) {
+            Button(
+                onClick = onClick, colors = ButtonDefaults.buttonColors(
+                    backgroundColor = MaterialTheme.colors.buttonBackgroundColor,
+                    contentColor = Color.White
+                )
+            ) {
                 Text(text = stringResource(R.string.btn_finish))
             }
         }
