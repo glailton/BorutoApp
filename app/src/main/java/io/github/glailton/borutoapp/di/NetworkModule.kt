@@ -5,7 +5,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.glailton.borutoapp.data.local.BorutoDatabase
 import io.github.glailton.borutoapp.data.remote.BorutoApi
+import io.github.glailton.borutoapp.domain.repository.RemoteDataSource
+import io.github.glailton.borutoapp.domain.repository.RemoteDataSourceImpl
 import io.github.glailton.borutoapp.util.Constants.BASE_URL
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
@@ -43,5 +46,14 @@ object NetworkModule {
     @Singleton
     fun provideBorutoApi(retrofit: Retrofit): BorutoApi {
         return retrofit.create(BorutoApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(
+        borutoApi: BorutoApi,
+        borutoDatabase: BorutoDatabase
+    ): RemoteDataSource {
+        return RemoteDataSourceImpl(borutoApi, borutoDatabase)
     }
 }

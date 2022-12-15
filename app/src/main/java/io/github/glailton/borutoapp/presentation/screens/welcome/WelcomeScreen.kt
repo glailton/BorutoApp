@@ -120,7 +120,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
 @Composable
 fun FinishButton(modifier: Modifier, pagerState: PagerState, onClick: () -> Unit) {
     Row(
-        modifier = Modifier.padding(horizontal = EXTRA_LARGE_PADDING),
+        modifier = modifier.padding(horizontal = EXTRA_LARGE_PADDING),
         verticalAlignment = Alignment.Top,
         horizontalArrangement = Arrangement.Center
     ) {
