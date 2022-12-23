@@ -6,11 +6,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import coil.annotation.ExperimentalCoilApi
 import io.github.glailton.borutoapp.presentation.screens.home.HomeScreen
+import io.github.glailton.borutoapp.presentation.screens.search.SearchScreen
 import io.github.glailton.borutoapp.presentation.screens.splash.SplashScreen
 import io.github.glailton.borutoapp.presentation.screens.welcome.WelcomeScreen
 import io.github.glailton.borutoapp.util.Constants.DETAILS_ARGUMENT_KEY
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Splash.route){
@@ -32,7 +35,7 @@ fun SetupNavGraph(navController: NavHostController) {
 
         }
         composable(route = Screen.Search.route) {
-
+            SearchScreen(navController)
         }
     }
 }

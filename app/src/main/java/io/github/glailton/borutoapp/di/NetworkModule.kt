@@ -8,7 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import io.github.glailton.borutoapp.data.local.BorutoDatabase
 import io.github.glailton.borutoapp.data.remote.BorutoApi
 import io.github.glailton.borutoapp.domain.repository.RemoteDataSource
-import io.github.glailton.borutoapp.domain.repository.RemoteDataSourceImpl
+import io.github.glailton.borutoapp.data.repository.RemoteDataSourceImpl
 import io.github.glailton.borutoapp.util.Constants.BASE_URL
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType

@@ -9,6 +9,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
+import io.github.glailton.borutoapp.navigation.Screen
 import io.github.glailton.borutoapp.presentation.common.ListContent
 import io.github.glailton.borutoapp.presentation.components.RatingWidget
 import io.github.glailton.borutoapp.ui.theme.LARGE_PADDING
@@ -23,7 +24,11 @@ fun HomeScreen(
     val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
     Scaffold(
         topBar = {
-            HomeTopBar(onSearchClicked = {} )
+            HomeTopBar(
+                onSearchClicked = {
+                    navController.navigate(Screen.Search.route)
+                }
+            )
         },
         content = {
             ListContent(heroes = allHeroes, navController = navController)
