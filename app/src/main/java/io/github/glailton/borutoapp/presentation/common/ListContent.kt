@@ -159,7 +159,7 @@ fun handlePagingResult(
                 false
             }
             error != null -> {
-                EmptyScreen(error = error)
+                EmptyScreen(error = error, heroes)
                 false
             }
             heroes.itemCount < 1 -> {

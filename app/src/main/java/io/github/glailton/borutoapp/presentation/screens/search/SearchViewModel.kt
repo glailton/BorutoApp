@@ -20,7 +20,7 @@ class SearchViewModel @Inject constructor(
     private val _searchQuery = mutableStateOf("")
     val searchQuery = _searchQuery
 
-    private val _searchedHeroes = MutableStateFlow< PagingData<Hero>>(PagingData.empty())
+    private val _searchedHeroes = MutableStateFlow<PagingData<Hero>>(PagingData.empty())
     val searchedHeroes = _searchedHeroes
 
     fun updateSearchQuery(query: String) {
