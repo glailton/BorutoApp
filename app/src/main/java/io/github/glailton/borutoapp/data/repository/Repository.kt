@@ -3,11 +3,13 @@ package io.github.glailton.borutoapp.data.repository
 import androidx.paging.PagingData
 import io.github.glailton.borutoapp.domain.model.Hero
 import io.github.glailton.borutoapp.domain.repository.DataStoreOperations
+import io.github.glailton.borutoapp.domain.repository.LocalDataSource
 import io.github.glailton.borutoapp.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class Repository @Inject constructor(
+    private val local: LocalDataSource,
     private val remote: RemoteDataSource,
     private val dataStore: DataStoreOperations
 ) {
@@ -25,5 +27,9 @@ class Repository @Inject constructor(
 
     fun readOnBoardingState(): Flow<Boolean>{
         return dataStore.readOnBoardingState()
+    }
+
+    suspend fun getSelectedHero(heroId: Int): Hero {
+        return local.getSelectedHero(heroId)
     }
 }
