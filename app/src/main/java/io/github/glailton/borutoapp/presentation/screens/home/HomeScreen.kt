@@ -1,18 +1,17 @@
 package io.github.glailton.borutoapp.presentation.screens.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.github.glailton.borutoapp.navigation.Screen
 import io.github.glailton.borutoapp.presentation.common.ListContent
-import io.github.glailton.borutoapp.presentation.components.RatingWidget
-import io.github.glailton.borutoapp.ui.theme.LARGE_PADDING
+import io.github.glailton.borutoapp.ui.theme.statusBarColor
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalCoilApi
@@ -22,6 +21,12 @@ fun HomeScreen(
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = MaterialTheme.colors.statusBarColor
+    )
+
     Scaffold(
         topBar = {
             HomeTopBar(
