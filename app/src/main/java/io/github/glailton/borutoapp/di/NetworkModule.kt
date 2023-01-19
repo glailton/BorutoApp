@@ -7,9 +7,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.glailton.borutoapp.data.local.BorutoDatabase
 import io.github.glailton.borutoapp.data.remote.BorutoApi
-import io.github.glailton.borutoapp.domain.repository.RemoteDataSource
 import io.github.glailton.borutoapp.data.repository.RemoteDataSourceImpl
+import io.github.glailton.borutoapp.domain.repository.RemoteDataSource
 import io.github.glailton.borutoapp.util.Constants.BASE_URL
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
@@ -17,6 +18,7 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+@OptIn(ExperimentalSerializationApi::class)
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {

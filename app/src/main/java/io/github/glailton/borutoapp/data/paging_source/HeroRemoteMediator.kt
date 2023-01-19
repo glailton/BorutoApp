@@ -9,10 +9,9 @@ import io.github.glailton.borutoapp.data.local.BorutoDatabase
 import io.github.glailton.borutoapp.data.remote.BorutoApi
 import io.github.glailton.borutoapp.domain.model.Hero
 import io.github.glailton.borutoapp.domain.model.HeroRemoteKeys
-import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class HeroRemoteMediator @Inject constructor(
+class HeroRemoteMediator(
     private val borutoApi: BorutoApi,
     private val borutoDatabase: BorutoDatabase
 ) : RemoteMediator<Int, Hero>() {
